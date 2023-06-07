@@ -1,0 +1,228 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.top-bar{
+  height: 5vh;
+}
+
+
+/* FOR VIDEO PLAYER */
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #ccc;
+  margin-bottom: 10px;
+}
+
+.progress {
+  height: 100%;
+  background-color: #ff0000; /* Adjust color as needed */
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tag.active {
+  background-color: #ff0000; /* Adjust color as needed */
+  color: #fff;
+}
+
+
+/* Progress Bar */
+.external-progress-bar {
+  /* position: relative;
+  width: 100%;
+  height: 10px;
+  background-color: #ccc;
+  margin-bottom: 10px; */
+  width: 100%;
+  position: relative;
+}
+
+.progress_old {
+  height: 100%;
+  background-color: #ff0000;
+}
+.progress {
+  width: 100%;
+  height: 8px;
+  background-color: #ddd;
+  border-radius: 4px;
+  appearance: none;
+  outline: none;
+  margin-top: 10px;
+}
+
+.progress::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background-color: #333;
+  border-radius: 50%;
+  cursor: pointer;
+}
+/* Flags */
+.flag {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px; /* Adjust the border-width value as needed */
+  border-color: transparent transparent #0c76a0 transparent;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+
+/* Play and Pause Buttons */
+.play-button,
+.pause-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.play-button:hover,
+.pause-button:hover {
+  background-color: #f0f0f0;
+}
+
+.play-button:focus,
+.pause-button:focus {
+  outline: none;
+}
+
+.play-icon,
+.pause-icon {
+  color: #333;
+  font-size: 28px;
+}
+
+.pause-icon {
+  display: none;
+}
+
+.play-button:hover .play-icon {
+  display: none;
+}
+
+.play-button:hover .pause-icon {
+  display: inline;
+}
+
+.pause-button:hover .play-icon {
+  display: inline;
+}
+
+.pause-button:hover .pause-icon {
+  display: none;
+}
+
+  /* Style for the top navigation bar */
+  .topnav {
+    background-color: #3c515c; /* Set the background color */
+    color: #050101; /* Set the text color */
+    height: 60px; /* Set the height of the navigation bar */
+    display: flex; /* Use flexbox for positioning */
+    align-items: center; /* Center content vertically */
+    justify-content: space-between; /* Spread content horizontally */
+    padding: 20px; /* Add padding around content */
+  }
+  /* Style for the logo */
+  .topnav .logo {
+    color: #fff; /* Set the text color */
+    font-size: 20px; /* Set the font size */
+    font-weight: bold; /* Set the font weight */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  /* Style for the menu options container */
+  .topnav .menu-options {
+    display: flex; /* Use flexbox for horizontal layout */
+    
+ 
+  }
+  
+  /* Style for the navigation links */
+  .topnav .menu-options a {
+    color: #050101; /* Set the text color */
+    text-decoration: none; /* Remove underline */
+    margin-left: 20px; /* Add spacing between links */
+  }
+  
+  /* Style for the active link */
+  .topnav .menu-options a.active {
+    background-color: #000000; /* Set a different background color for the active link */
+  }
+
+  .custom-select {
+    width: 200px; /* Set the desired width */
+    height: 30px; /* Set the desired height */
+    font-size: 16px; /* Set the desired font size */
+    /* Add any other desired styles */
+    margin-right: 2vh;
+  }
+  .primary{
+    background-color: #3c515c!important;
+    color: white;
+    font-size: initial;
+  }
