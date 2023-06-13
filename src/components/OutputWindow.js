@@ -1,5 +1,5 @@
 import React from "react";
-import LanguagesDropdown from "./LanguagesDropdown";
+// import LanguagesDropdown from "./LanguagesDropdown";
 const OutputWindow = ({ outputDetails,onLanguageChange  }) => {
   const getOutput = () => {
     let statusId = outputDetails?.status?.id;
@@ -37,9 +37,9 @@ const OutputWindow = ({ outputDetails,onLanguageChange  }) => {
   return (
     <>
 
-<div className="px-4 py-2">
+{/* <div className="px-4 py-2">
           <LanguagesDropdown onSelectChange={onLanguageChange} />
-        </div>
+        </div> */}
       <h1 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 mb-2">
         Output
       </h1>

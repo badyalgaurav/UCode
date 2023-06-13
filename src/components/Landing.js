@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import CodeEditorWindow from "./CodeEditorWindow";
 import axios from "axios";
 import { classnames } from "../utils/general";
@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { defineTheme } from "../lib/defineTheme";
-import useKeyPress from "../hooks/useKeyPress";
+// import useKeyPress from "../hooks/useKeyPress";
 
 import OutputWindow from "./OutputWindow";
 import CustomInput from "./CustomInput";
@@ -32,8 +32,8 @@ const Landing = () => {
   const [processing, setProcessing] = useState(null);
   const [theme, setTheme] = useState("cobalt");
   const [language, setLanguage] = useState(languageOptions[0]);
-  const enterPress = useKeyPress("Enter");
-  const ctrlPress = useKeyPress("Control");
+  // const enterPress = useKeyPress("Enter");
+  // const ctrlPress = useKeyPress("Control");
   const editorRef = useRef(null);
 
   const onSelectChange = (sl) => {
@@ -41,13 +41,14 @@ const Landing = () => {
     setLanguage(sl);
   };
 
-  useEffect(() => {
-    if (enterPress && ctrlPress) {
-      console.log("enterPress", enterPress);
-      console.log("ctrlPress", ctrlPress);
-      handleCompile();
-    }
-  }, [ctrlPress, enterPress]);
+  // useEffect(() => {
+  //   if (enterPress && ctrlPress) {
+  //     console.log("enterPress", enterPress);
+  //     console.log("ctrlPress", ctrlPress);
+  //     handleCompile();
+  //   }
+  // }, [ctrlPress, enterPress]);
+
   const onChange = (action, data) => {
     switch (action) {
       case "code": {
@@ -188,21 +189,21 @@ const Landing = () => {
 
 
 
- 
+
 
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor;
   }
 
-  const handleVideoPauseEvent=()=>{
+  const handleVideoPauseEvent = () => {
     const randomInt = getRandomInt(1, 70);
     if (editorRef.current) {
-    const editor = editorRef.current;
-    const lineNumber = randomInt;
-    const column = 1; // Optionally, specify the column number if needed
-    const position = { lineNumber, column };
-    editor.setPosition(position);
-    editor.revealLineInCenter(lineNumber)
+      const editor = editorRef.current;
+      const lineNumber = randomInt;
+      const column = 1; // Optionally, specify the column number if needed
+      const position = { lineNumber, column };
+      editor.setPosition(position);
+      editor.revealLineInCenter(lineNumber)
     }
   }
 
@@ -220,22 +221,13 @@ const Landing = () => {
         pauseOnHover
       />
 
-      
+
 
       {/* <div className="top-bar centered"><b>MyIDE</b>  </div> */}
-      
-<div class="topnav">
-  <a class="logo" href="#">Logo</a>
-  <div class="menu-options">
-    <LanguagesDropdown onSelectChange={onSelectChange} />
-    <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
-    {/* Here will be current user's information */}
-    <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
-  </div>
-</div>
 
-     
-      <button onClick={handleVideoPauseEvent}>Video Pause</button>
+
+
+
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
         <div className="flex flex-col w-full h-full justify-start items-end">
           <CodeEditorWindow
@@ -248,6 +240,16 @@ const Landing = () => {
         </div>
 
         <div className="right-container flex flex-shrink-0 w-[30%] flex-col">
+          <div class="landing-control">
+            <div class="menu-options">
+              <button onClick={handleVideoPauseEvent}>Video Pause</button>
+              <LanguagesDropdown onSelectChange={onSelectChange} />
+              <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
+            </div>
+          </div>
+
+
+
           <OutputWindow outputDetails={outputDetails} />
           <div className="flex flex-col items-end">
             <CustomInput
@@ -268,7 +270,7 @@ const Landing = () => {
           {outputDetails && <OutputDetails outputDetails={outputDetails} />}
         </div>
       </div>
-     
+
     </>
   );
 };

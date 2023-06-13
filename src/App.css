@@ -187,6 +187,11 @@
     justify-content: space-between; /* Spread content horizontally */
     padding: 20px; /* Add padding around content */
   }
+
+ 
+ 
+ 
+
   /* Style for the logo */
   .topnav .logo {
     color: #fff; /* Set the text color */
@@ -197,9 +202,8 @@
   
   /* Style for the menu options container */
   .topnav .menu-options {
+    color: white;
     display: flex; /* Use flexbox for horizontal layout */
-    
- 
   }
   
   /* Style for the navigation links */
@@ -225,4 +229,31 @@
     background-color: #3c515c!important;
     color: white;
     font-size: initial;
+  }
+
+  .landing-control{
+    background-color: #b5babd; /* Set the background color */
+    color: #050101; /* Set the text color */
+    height: 60px; /* Set the height of the navigation bar */
+    display: flex; /* Use flexbox for positioning */
+    align-items: center; /* Center content vertically */
+    justify-content: space-between; /* Spread content horizontally */
+    padding: 20px; /* Add padding around content */
+  }
+
+   /* Style for the menu options container */
+   .landing-control .menu-options {
+    display: flex; /* Use flexbox for horizontal layout */
+  }
+  
+  /* Style for the navigation links */
+  .landing-control .menu-options a {
+    color: #050101; /* Set the text color */
+    text-decoration: none; /* Remove underline */
+    margin-left: 20px; /* Add spacing between links */
+  }
+  
+  /* Style for the active link */
+  .landing-control .menu-options a.active {
+    background-color: #000000; /* Set a different background color for the active link */
   }
