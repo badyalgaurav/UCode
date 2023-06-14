@@ -2,14 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import ReactPlayer from 'react-player';
 import html2canvas from 'html2canvas';
 import Landing from "./Landing";
-import Footer from "./Footer";
-const VideoPlayer1 = () => {
-// const [playerRef, setPlayerRef] = useState(null);
-const playerRef = useRef(null);
 
-const [progress, setProgress] = useState(0);
+const VideoPlayer1 = () => {
+  // const [playerRef, setPlayerRef] = useState(null);
+  const playerRef = useRef(null);
+
+  const [progress, setProgress] = useState(0);
   const [flags, setFlags] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlayingState, setIsPlayingState] = useState(false);
   const [videoProgress, setVideoProgress] = useState(0);
   const [videoDuration, setVideoDuration] = useState(null);
 
@@ -19,16 +20,17 @@ const [progress, setProgress] = useState(0);
 
   const playVideo = () => {
     setIsPlaying(true);
-  if (playerRef ) {
-    playerRef.current.seekTo(videoProgress);
-    playerRef.current.getInternalPlayer().play();
-    
-  }
+    if (playerRef) {
+      playerRef.current.seekTo(videoProgress);
+      playerRef.current.getInternalPlayer().play();
+
+    }
   };
-  
+
   const pauseVideo = () => {
     debugger;
     setIsPlaying(false);
+    setIsPlayingState(false);
     if (playerRef) {
       const currentTime = playerRef.current.getCurrentTime();
       setVideoProgress(currentTime);
@@ -36,21 +38,6 @@ const [progress, setProgress] = useState(0);
       playerRef.current.getInternalPlayer().pause();
     }
 
-    //screenshot
-      // Get the video element from the player
-      
-      // const videoElement = playerRef.current.getInternalPlayer();
-
-      // // Use html2canvas to capture a screenshot of the video element
-      // html2canvas(videoElement).then(canvas => {
-      //   // Create an image element from the canvas
-      //   const img = new Image();
-      //   img.src = canvas.toDataURL("image/png");
-  
-      //   // Open the screenshot in a new window/tab
-      //   const win = window.open();
-      //   win.document.write('<img src="' + img.src + '"/>');
-      // });
 
   };
   const handleProgressChange = (e) => {
@@ -77,12 +64,28 @@ const [progress, setProgress] = useState(0);
     }
   };
 
-  const handleTagClickEvent=()=>{
+  const handleTagClickEvent = () => {
     alert("test");
   }
   useEffect(() => {
     setVideoDuration(null);
   }, [playerRef]);
+
+
+
+  const handleToggle = () => {
+    debugger;
+    const newState = !isPlayingState;
+    setIsPlayingState(newState);
+    if (newState) {
+      playVideo();
+    }
+    else {
+      pauseVideo();
+    }
+  };
+
+
 
   return (
     <div>
@@ -91,9 +94,9 @@ const [progress, setProgress] = useState(0);
           <Landing />
         </div>
       ) : (
-        <div  onClick={pauseVideo}>
+        <div onClick={pauseVideo}>
           <ReactPlayer
-          // ref={(ref) => setPlayerRef(ref)}
+            // ref={(ref) => setPlayerRef(ref)}
             ref={playerRef}
             url="/videos/testVideo.mp4"
             onReady={handleVideoReady}
@@ -108,42 +111,39 @@ const [progress, setProgress] = useState(0);
           />
         </div>
       )}
-<div>
+      <div>
+        <div className="container_play_progress">
+          <button className="btn" onClick={handleToggle}>{isPlayingState ? 'Pause' : 'Play'}</button>
+        
+          {/* Render the progress bar */}
+          <div className="external-progress-bar">
+            {/* <div className="progress" style={{ width: `${progress * 100}%` }} /> */}
+            <input
+              className="progress"
+              type="range"
+              min={0}
+              max={100}
+              value={progress}
+              onChange={handleProgressChange}
+            />
 
-      {/* Render the progress bar */}
-      <div className="external-progress-bar">
-        {/* <div className="progress" style={{ width: `${progress * 100}%` }} /> */}
-        <input
-          className="progress"
-          type="range"
-          min={0}
-          max={100}
-          value={progress}
-          onChange={handleProgressChange}
-        />
-    
-        {flags.map((flagTime, index) => (
-          <div
-            key={index}
-            className="flag"
-            onClick={handleTagClickEvent}
-            style={{
-              left: `${(flagTime / videoDuration) * 100}%`
-            }}
-          />
-        ))}
+            {flags.map((flagTime, index) => (
+              <div
+                key={index}
+                className="flag"
+                onClick={handleTagClickEvent}
+                style={{
+                  left: `${(flagTime / videoDuration) * 100}%`
+                }}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-<button className="play-button" onClick={playVideo}>
-    Play
-  </button>
-  <button className="pause-button" onClick={pauseVideo}>
-    Pause
-  </button>
-</div>
-<Footer />
-</div>
 
-);
+    </div>
+
+  );
 };
 
 export default VideoPlayer1;

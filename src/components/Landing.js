@@ -221,13 +221,6 @@ const Landing = () => {
         pauseOnHover
       />
 
-
-
-      {/* <div className="top-bar centered"><b>MyIDE</b>  </div> */}
-
-
-
-
       <div className="flex flex-row space-x-4 items-start px-4 py-4">
         <div className="flex flex-col w-full h-full justify-start items-end">
           <CodeEditorWindow
@@ -242,7 +235,7 @@ const Landing = () => {
         <div className="right-container flex flex-shrink-0 w-[30%] flex-col">
           <div class="landing-control">
             <div class="menu-options">
-              <button onClick={handleVideoPauseEvent}>Video Pause</button>
+              {/* <button onClick={handleVideoPauseEvent}>Video Pause</button> */}
               <LanguagesDropdown onSelectChange={onSelectChange} />
               <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
             </div>
