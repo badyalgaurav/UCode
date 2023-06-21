@@ -91,10 +91,7 @@
   position: relative;
 }
 
-.progress_old {
-  height: 100%;
-  background-color: #ff0000;
-}
+
 .progress {
   width: 100%;
   height: 8px;
@@ -128,96 +125,13 @@
 }
 
 
-/* Play and Pause Buttons */
-.play-button,
-.pause-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-.play-button:hover,
-.pause-button:hover {
-  background-color: #f0f0f0;
-}
 
-.play-button:focus,
-.pause-button:focus {
-  outline: none;
-}
 
-.play-icon,
-.pause-icon {
-  color: #333;
-  font-size: 28px;
-}
-
-.pause-icon {
-  display: none;
-}
-
-.play-button:hover .play-icon {
-  display: none;
-}
-
-.play-button:hover .pause-icon {
-  display: inline;
-}
-
-.pause-button:hover .play-icon {
-  display: inline;
-}
-
-.pause-button:hover .pause-icon {
-  display: none;
-}
-
-  /* Style for the top navigation bar */
-  .topnav {
-    background-color: #3c515c; /* Set the background color */
-    color: #050101; /* Set the text color */
-    height: 60px; /* Set the height of the navigation bar */
-    display: flex; /* Use flexbox for positioning */
-    align-items: center; /* Center content vertically */
-    justify-content: space-between; /* Spread content horizontally */
-    padding: 20px; /* Add padding around content */
-  }
 
  
- 
- 
 
-  /* Style for the logo */
-  .topnav .logo {
-    color: #fff; /* Set the text color */
-    font-size: 20px; /* Set the font size */
-    font-weight: bold; /* Set the font weight */
-    text-decoration: none; /* Remove underline */
-  }
-  
-  /* Style for the menu options container */
-  .topnav .menu-options {
-    color: white;
-    display: flex; /* Use flexbox for horizontal layout */
-  }
-  
-  /* Style for the navigation links */
-  .topnav .menu-options a {
-    color: #050101; /* Set the text color */
-    text-decoration: none; /* Remove underline */
-    margin-left: 20px; /* Add spacing between links */
-  }
-  
-  /* Style for the active link */
-  .topnav .menu-options a.active {
-    background-color: #000000; /* Set a different background color for the active link */
-  }
+
 
   .custom-select {
     width: 200px; /* Set the desired width */
@@ -225,11 +139,6 @@
     font-size: 16px; /* Set the desired font size */
     /* Add any other desired styles */
     margin-right: 2vh;
-  }
-  .primary{
-    background-color: #3c515c!important;
-    color: white;
-    font-size: initial;
   }
 
   .landing-control{
@@ -261,18 +170,4 @@
 
   .container_play_progress {
     display: flex;
-  }
-
-  .btn {
-    background-color: darkgrey;
-    color: white;
-    padding: 0px 12px;
-    border: cornsilk;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0.2%;
-  }
-  
-  .btn:hover {
-    background-color: grey;
   }

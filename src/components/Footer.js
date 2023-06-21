@@ -1,10 +1,14 @@
 import React from "react";
-
+import "../contents/sticky-footer-navbar.css"
 const Footer = () => {
   return (
-    <div className="primary  h-8 bottom-0 px-2 py-1 flex items-center justify-center w-full text-xs text-gray-500 ">
-     <b>Learn, share and grow</b>
+    <>
+    <footer class="footer mt-auto py-3 bg-light">
+    <div class="container">
+      <span class="text-muted">Place sticky footer content here.</span>
     </div>
+  </footer>
+  </>
   );
 };
 

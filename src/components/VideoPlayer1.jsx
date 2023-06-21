@@ -113,7 +113,7 @@ const VideoPlayer1 = () => {
       )}
       <div>
         <div className="container_play_progress">
-          <button className="btn" onClick={handleToggle}>{isPlayingState ? 'Pause' : 'Play'}</button>
+          <button className="btn btn-light" onClick={handleToggle}>{isPlayingState ? 'Pause' : 'Play'}</button>
         
           {/* Render the progress bar */}
           <div className="external-progress-bar">
