@@ -5,18 +5,13 @@ import Header from "../components/Header";
 const Layout = () => {
   return (
     <div>
-      <header>
-        <Header />
-      </header>
-
-      <main class="flex-shrink-0">
-        <div class="container-fluid">
+      <Header />
+      <main class="flex-shrink-0 main-content">
+        <div class="">
           <Outlet />
         </div>
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />
     </div>
   );
 };
