@@ -28,7 +28,6 @@ const VideoPlayer1 = () => {
   };
 
   const pauseVideo = () => {
-    debugger;
     setIsPlaying(false);
     setIsPlayingState(false);
     if (playerRef) {
@@ -74,7 +73,6 @@ const VideoPlayer1 = () => {
 
 
   const handleToggle = () => {
-    debugger;
     const newState = !isPlayingState;
     setIsPlayingState(newState);
     if (newState) {
@@ -96,7 +94,6 @@ const VideoPlayer1 = () => {
       ) : (
         <div onClick={pauseVideo}>
           <ReactPlayer
-            // ref={(ref) => setPlayerRef(ref)}
             ref={playerRef}
             url="/videos/testVideo.mp4"
             onReady={handleVideoReady}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import "./App.css";
+import "./App.css";
 
 // import VideoPlayer from "./components/VideoPlayerWindow";
 import VideoPlayer1 from "./components/VideoPlayer1";

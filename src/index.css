@@ -59,3 +59,41 @@ body {
   margin-left: 0px!important;
   margin-right: 0px!important;
 }
+
+
+.container-right-block-top {
+  display: flex;
+  flex-direction: column;
+  height: 33vh; /* Set the height of the container as needed */
+}
+.container-right-block-output{
+  display: flex;
+  flex-direction: column;
+  height: 20vh; 
+}
+
+.div1, .div2 {
+  flex: 1;
+}
+
+.div1 {
+  background-color: #f0f0f0; /* Background color for Div 1 */
+}
+
+.div2 {
+  background-color: #e0e0e0; /* Background color for Div 2 */
+}
+
+.custom-width-play-pause-button {
+  width: 54px; /* Set your desired default width here */
+}
+
+@media (max-width: 768px) {
+  .custom-width-play-pause-button {
+    width: 42px; /* Adjust the width for smaller screens */
+  }
+}
+
+
+
+
