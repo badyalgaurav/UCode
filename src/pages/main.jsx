@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import VideoPlayerFinal from "../components/VideoPlayerFinal";
 import OutputComponent from "../components/OutputComponent";
 import ExternalVideoPlayerController from "../components/ExternalVideoPlayerController";
 import CodeEditorWindowFinal from "../components/CodeEditorFinal";
-
+import { languageOptions } from "../constants/languageOptions";
 const Main = () => {
     const playerRef = useRef(null);
     const [progress, setProgress] = useState(0);
@@ -12,7 +13,9 @@ const Main = () => {
     const [isPlayingState, setIsPlayingState] = useState(false);
     const [videoProgress, setVideoProgress] = useState(0);
     const [videoDuration, setVideoDuration] = useState(null);
-
+    const [customInput, setCustomInput] = useState("");
+    const [outputDetails, setOutputDetails] = useState(null);
+    const [processing, setProcessing] = useState(null);
     const handleDuration = (duration) => {
         setVideoDuration(duration);
     };
@@ -111,6 +114,88 @@ const Main = () => {
         editorRef.current = editor;
     }
 
+    //Code complier
+    const checkStatus = async (token) => {
+        const options = {
+            method: "GET",
+            url: process.env.REACT_APP_RAPID_API_URL + "/" + token,
+            params: { base64_encoded: "true", fields: "*" },
+            headers: {
+                "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
+                "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+            },
+        };
+        try {
+            let response = await axios.request(options);
+            let statusId = response.data.status?.id;
+
+            // Processed - we have a result
+            if (statusId === 1 || statusId === 2) {
+                // still processing
+                setTimeout(() => {
+                    checkStatus(token);
+                }, 2000);
+                return;
+            } else {
+                setProcessing(false);
+                setOutputDetails(response.data);
+                console.log("response.data", response.data);
+                return;
+            }
+        } catch (err) {
+            console.log("err", err);
+            setProcessing(false);
+        }
+    };
+    const handleCompile = () => {
+        setProcessing(true);
+        const formData = {
+            language_id: 63,//language.id,
+            // encode source code in base64
+            source_code: btoa(code),
+            stdin: btoa(customInput),
+        };
+        const options = {
+            method: "POST",
+            url: process.env.REACT_APP_RAPID_API_URL,
+            params: { base64_encoded: "true", fields: "*" },
+            headers: {
+                "content-type": "application/json",
+                "Content-Type": "application/json",
+                "X-RapidAPI-Host": process.env.REACT_APP_RAPID_API_HOST,
+                "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+            },
+            data: formData,
+        };
+
+        axios
+            .request(options)
+            .then(function (response) {
+                debugger;
+                console.log("res.data", response.data);
+                const token = response.data.token;
+                checkStatus(token);
+            })
+            .catch((err) => {
+                let error = err.response ? err.response.data : err;
+                // get error status
+                let status = err.response.status;
+                console.log("status", status);
+                if (status === 429) {
+                    console.log("too many requests", status);
+
+                    //   showErrorToast(
+                    //     `Quota of 100 requests exceeded for the Day! Please read the blog to learn how to setup your own RAPID API Judge0!`,
+                    //     10000
+                    //   );
+                }
+                setProcessing(false);
+                console.log("catch block...", error);
+            });
+    };
+
+
+
     return (<>
         <div class="row row_custom mt-1">
             <div class="col-md-10">
@@ -148,7 +233,12 @@ const Main = () => {
                 </div>
             </div>
             <div class="col-md-2">
-                <OutputComponent props={"Test"}></OutputComponent>
+                <OutputComponent handleCompile={handleCompile}
+                    processing={processing}
+                    outputDetails={outputDetails}
+                    customInput={customInput}
+                    setCustomInput={setCustomInput}
+                ></OutputComponent>
             </div>
         </div>
     </>
