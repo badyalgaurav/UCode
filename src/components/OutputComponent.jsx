@@ -16,7 +16,7 @@ const OutputComponent = (props) => {
           <button className="btn btn-primary"
             onClick={handleCompile}
           >
-            {props.processing ? "Processing..." : <Play size={30}/>}
+            {props.processing ? "Processing..." : "Compile and Execute"}
           </button>
         </div>
         {/* <div className=""><button className="btn btn-secondary"><Fullscreen size={30}></Fullscreen></button></div> */}
