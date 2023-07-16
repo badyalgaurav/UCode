@@ -171,3 +171,8 @@
   .container_play_progress {
     display: flex;
   }
+
+
+  .ml-auto {
+    margin-left: auto;
+  }

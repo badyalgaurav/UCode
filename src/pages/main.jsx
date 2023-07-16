@@ -4,6 +4,7 @@ import VideoPlayerFinal from "../components/VideoPlayerFinal";
 import OutputComponent from "../components/OutputComponent";
 import ExternalVideoPlayerController from "../components/ExternalVideoPlayerController";
 import CodeEditorWindowFinal from "../components/CodeEditorFinal";
+import { Fullscreen } from 'react-bootstrap-icons';
 import { languageOptions } from "../constants/languageOptions";
 const Main = () => {
     const playerRef = useRef(null);
@@ -130,7 +131,7 @@ const Main = () => {
             let statusId = response.data.status?.id;
 
             // Processed - we have a result
-            if (statusId === 1 || statusId === 2) {
+            if (statusId === 1 || statusId === 2) { 
                 // still processing
                 setTimeout(() => {
                     checkStatus(token);
@@ -194,11 +195,44 @@ const Main = () => {
             });
     };
 
+    const handleFullScreen = () => {
+        debugger;
+        // const visibleCompoent=!props.isPlayingState?"codeEditor":"videoPlayer";
+        // if (isPlayingState) {
+            var elem = document.getElementById("codeEditor");
 
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            }
+            else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            }
+            else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            }
+            else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        // }
+    }
 
     return (<>
+
         <div class="row row_custom mt-1">
             <div class="col-md-10">
+                <div class="nav-scroller bg-dark shadow-sm mb-0 ">
+                <nav className="nav" aria-label="Secondary navigation">
+        {/* <a className="nav-link active" aria-current="page" href="#">Dashboard</a>
+        <a className="nav-link active" aria-current="page" href="#">Dashboard</a> */}
+        <div className="ml-auto">
+          <button onClick={handleFullScreen} className="btn btn-secondary d-inline-flex align-items-center btn-sm">
+            <Fullscreen />
+          </button>
+        </div>
+      </nav>
+
+                    {/* */}
+                </div>
                 <div id="codeEditor" className="code-editor d-none">
                     <CodeEditorWindowFinal code={code}
                         onChange={onChange}

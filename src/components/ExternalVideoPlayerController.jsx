@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Fullscreen } from 'react-bootstrap-icons';
+
 const ExternalVideoPlayerController = (props) => {
 
     const handleProgressChange = (e) => {
@@ -11,26 +11,7 @@ const ExternalVideoPlayerController = (props) => {
     const handleToggle = () => {
         props.handleToggle();
     };
-    const handleFullScreen=()=>{
-        debugger;
-        // const visibleCompoent=!props.isPlayingState?"codeEditor":"videoPlayer";
-        if(!props.isPlayingState){
-        var elem = document.getElementById("codeEditor");
 
-        if(elem.requestFullscreen){
-            elem.requestFullscreen();
-        }
-        else if(elem.mozRequestFullScreen){
-            elem.mozRequestFullScreen();
-        }
-        else if(elem.webkitRequestFullscreen){
-            elem.webkitRequestFullscreen();
-        }
-        else if(elem.msRequestFullscreen){
-            elem.msRequestFullscreen();
-        }
-    }
-    }
 
     return (<>
         <div className="row container_play_progress">
@@ -58,7 +39,7 @@ const ExternalVideoPlayerController = (props) => {
                             />
                         ))}
                 </div>
-                <div className=""><button onClick={handleFullScreen} className="btn btn-secondary d-inline-flex align-items-center btn-sm"><Fullscreen ></Fullscreen></button></div>
+                {/* <div className=""><button onClick={handleFullScreen} className="btn btn-secondary d-inline-flex align-items-center btn-sm"><Fullscreen ></Fullscreen></button></div> */}
 
             </div>
         </div>

@@ -24,14 +24,7 @@ const OutputComponent = (props) => {
       </div>
 
     </div>
-    <div class="container-right-block-top">
-      <div class="div2">Div 1</div>
-      <div class="div2">Div 2</div>
-    </div>
-    <div class="container-right-block-output">
-      OUTPUT
-      Garry
-    </div></>)
+    </>)
 }
 
 export default OutputComponent;

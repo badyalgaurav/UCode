@@ -23,10 +23,10 @@ const Header = () => {
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="row d-flex  align-items-center">
+          <div className="col"> <label class="text-info">UserName!</label></div>
+          <div className="col"><button class="btn btn-outline-success" type="submit">Logout</button></div>
+        </div>
       </div>
     </div>
   </nav>
