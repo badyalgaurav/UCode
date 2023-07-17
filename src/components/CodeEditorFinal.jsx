@@ -14,7 +14,7 @@ const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount 
   return (
     <div className="row">
       <Editor
-        height="87vh"
+        height="88vh"
         width={`100%`}
         language={language || "javascript"}
         value={value}

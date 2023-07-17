@@ -1,3 +1,9 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #212529;
+}
 .App {
   text-align: center;
 }
@@ -175,4 +181,9 @@
 
   .ml-auto {
     margin-left: auto;
+  }
+
+
+  .content {
+    height: calc(100% - 510px)!important; /* Calculate the remaining height */
   }

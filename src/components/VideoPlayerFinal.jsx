@@ -26,9 +26,10 @@ const VideoPalayerFinal = (props) => {
   }, [playerRef]);
 
 
+
   return (<>
-    <div className="row" onClick={props.pauseVideo}>
-      <ReactPlayer
+    <div className="row" ionClick={props.pauseVideo}>
+      <ReactPlayer 
         // ref={(ref) => setPlayerRef(ref)}
         ref={playerRef}
         url="/videos/testVideo.mp4"
@@ -38,7 +39,8 @@ const VideoPalayerFinal = (props) => {
         playing={props.isPlaying}
         controls={false}
         width="100%"
-        height="auto"
+        // height="auto"
+        height="88vh"
         onPlay={playVideo}
         onPause={pauseVideo}
       />

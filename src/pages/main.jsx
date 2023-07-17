@@ -215,15 +215,26 @@ const Main = () => {
             }
         // }
     }
-
+    function resizeEditor() {
+        const editorHeight = window.innerHeight - 100;// document.querySelector('header').offsetHeight;
+        document.getElementById('codeEditor').style.height = `${editorHeight}px`;
+        document.getElementById('videoPlayer').style.height = `${editorHeight}px`;
+      }
+    useEffect(() => {
+        resizeEditor();
+        window.addEventListener('resize', resizeEditor);
+    
+        return () => {
+          window.removeEventListener('resize', resizeEditor);
+        };
+      }, []);
     return (<>
 
         <div class="row row_custom mt-1">
             <div class="col-md-10">
-                <div class="nav-scroller bg-dark shadow-sm mb-0 ">
+                {/* <div class="nav-scroller bg-dark shadow-sm mb-0 ">
                 <nav className="nav" aria-label="Secondary navigation">
-        {/* <a className="nav-link active" aria-current="page" href="#">Dashboard</a>
-        <a className="nav-link active" aria-current="page" href="#">Dashboard</a> */}
+       
         <div className="ml-auto">
           <button onClick={handleFullScreen} className="btn btn-secondary d-inline-flex align-items-center btn-sm">
             <Fullscreen />
@@ -231,10 +242,10 @@ const Main = () => {
         </div>
       </nav>
 
-                    {/* */}
-                </div>
+                </div> */}
                 <div id="codeEditor" className="code-editor d-none">
-                    <CodeEditorWindowFinal code={code}
+                    <CodeEditorWindowFinal code={code} 
+                    
                         onChange={onChange}
                         language={undefined}
                         theme={undefined}
