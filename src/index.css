@@ -64,7 +64,7 @@ body {
 .container-right-block-top {
   display: flex;
   flex-direction: column;
-  height: 33vh; /* Set the height of the container as needed */
+  height: 10vh; /* Set the height of the container as needed */
 }
 .container-right-block-output{
   display: flex;
@@ -72,18 +72,20 @@ body {
   height: 20vh; 
 }
 
-.div1, .div2 {
+.div1, .output-div {
   flex: 1;
 }
 
-.div1 {
-  background-color: #f0f0f0; /* Background color for Div 1 */
+.output-div {
+  flex: 1;
+  background-color: #292931;
+  color: white;
 }
-
-.div2 {
-  background-color: #e0e0e0; /* Background color for Div 2 */
+.output-div .text-green-500{
+  background-color: #292931;
+  color: rgb(180 245 58);
+  font-size: initial;
 }
-
 .custom-width-play-pause-button {
   width: 54px; /* Set your desired default width here */
 }
@@ -93,7 +95,3 @@ body {
     width: 42px; /* Adjust the width for smaller screens */
   }
 }
-
-
-
-

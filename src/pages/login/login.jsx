@@ -1,8 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import '../login/signin.css'
 const Login=()=>{
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate('/main');
+  };
     return(<>
-    <div class="text-center">
+    <div class="text-center center-screen">
     <main class="form-signin">
     <form>
     <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"></img>
@@ -10,15 +15,13 @@ const Login=()=>{
   
       <div class="form-floating mb-2">
         <input type="email" class="form-control" id="txtEmail" placeholder="name@example.com"></input>
-        <label>Email address</label>
+        <label className="sign-in-label">Email address</label>
       </div>
       <div class="form-floating">
         <input type="password" class="form-control" id="txtPassword" placeholder="Password"></input>
-        <label>Password</label>
+        <label className="sign-in-label">Password</label>
       </div>
-  
-     
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" onClick={handleButtonClick}>Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
     </form>
   </main>

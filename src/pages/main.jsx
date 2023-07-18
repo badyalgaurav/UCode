@@ -228,21 +228,63 @@ const Main = () => {
           window.removeEventListener('resize', resizeEditor);
         };
       }, []);
+
+
+      const [isFullscreen, setIsFullscreen] = useState(false);
+
+      const toggleFullscreen = () => {
+        const element = document.getElementById('fullscreenDiv');
+    
+        if (!isFullscreen) {
+          enterFullscreen(element);
+        } else {
+          exitFullscreen();
+        }
+      };
+    
+      const enterFullscreen = (element) => {
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+          element.msRequestFullscreen();
+        }
+    
+        // setIsFullscreen(true);
+      };
+    
+      const exitFullscreen = () => {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+    
+        setIsFullscreen(false);
+      };
     return (<>
 
         <div class="row row_custom mt-1">
-            <div class="col-md-10">
-                {/* <div class="nav-scroller bg-dark shadow-sm mb-0 ">
-                <nav className="nav" aria-label="Secondary navigation">
+            <div class="col-md-10" id="fullscreenDiv">
+                <div class="nav-scroller bg-dark shadow-sm mb-0 ">
+                {/* <nav className="nav" aria-label="Secondary navigation">
        
         <div className="ml-auto">
           <button onClick={handleFullScreen} className="btn btn-secondary d-inline-flex align-items-center btn-sm">
             <Fullscreen />
           </button>
         </div>
-      </nav>
+      </nav> */}
 
-                </div> */}
+                </div>
+        
                 <div id="codeEditor" className="code-editor d-none">
                     <CodeEditorWindowFinal code={code} 
                     
@@ -283,6 +325,8 @@ const Main = () => {
                     outputDetails={outputDetails}
                     customInput={customInput}
                     setCustomInput={setCustomInput}
+                    isFullscreen={isFullscreen}
+                    toggleFullscreen={toggleFullscreen}
                 ></OutputComponent>
             </div>
         </div>

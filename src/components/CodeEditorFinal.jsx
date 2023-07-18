@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+//reference for editor
+// https://www.npmjs.com/package/@monaco-editor/react
 import Editor from "@monaco-editor/react";
 
 const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount }) => {
@@ -9,7 +10,6 @@ const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount 
     setValue(value);
     onChange("code", value);
   };
-
 
   return (
     <div className="row">
@@ -22,8 +22,10 @@ const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount 
         defaultValue="// some comment"
         onChange={handleEditorChange}
        onMount={handleEditorDidMount}
+       
       />
     </div>
   );
 };
 export default CodeEditorFinal;
+

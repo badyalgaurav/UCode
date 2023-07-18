@@ -36,10 +36,8 @@ const OutputWindowFinal = ({ outputDetails }) => {
 
   return (
     <>
-      <h1 className="font-bold">
-        Output
-      </h1>
-      <div className="">
+      <h4 className="font-bold"> Output</h4>
+      <div className="output-response">
         {outputDetails ? <>{getOutput()}</> : null}
       </div>
     </>

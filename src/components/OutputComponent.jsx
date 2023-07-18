@@ -11,11 +11,12 @@ const OutputComponent = (props) => {
 
   return (<>
     <div class="container-right-block-top">
-      <div class="div1">
-        <div className="row">
-          <button className="btn btn-primary"
-            onClick={handleCompile}
-          >
+      <div class="output-div ">
+        <div className="d-flex">
+        <button className="btn btn-primary btn-sm m-2" onClick={props.toggleFullscreen}>
+        {props.isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+      </button>
+          <button className="btn btn-primary btn-sm m-2"  onClick={handleCompile}>
             {props.processing ? "Processing..." : "Compile and Execute"}
           </button>
         </div>
