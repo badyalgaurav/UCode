@@ -10,7 +10,7 @@ const Login=()=>{
     <div class="text-center center-screen">
     <main class="form-signin">
     <form>
-    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"></img>
+    <img class="mb-4" src="./logo.png" alt="" width="90" height="80"></img>
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
   
       <div class="form-floating mb-2">
