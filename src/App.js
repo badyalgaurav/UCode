@@ -7,6 +7,7 @@ import "./App.css";
 import VideoPlayer1 from "./components/VideoPlayer1";
 import Main from "./pages/main";
 import Login from "./pages/login/login";
+import TaskUploaderForm from "./pages/TaskManagement/taskUploaderForm";
 import Layout from './pages/_layout';
 
 function Root() {
@@ -17,6 +18,7 @@ function Root() {
       <Route path="/login" element={<Login/>} />
       <Route path="/" element={<Layout/>}>
         <Route path="/main" element={<Main/>} />
+        <Route path="/TaskUploaderForm" element={<TaskUploaderForm/>} />
         </Route>
       </Routes>
     </div>);

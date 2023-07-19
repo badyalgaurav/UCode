@@ -4,6 +4,10 @@ import VideoPlayerFinal from "../components/VideoPlayerFinal";
 import OutputComponent from "../components/OutputComponent";
 import ExternalVideoPlayerController from "../components/ExternalVideoPlayerController";
 import CodeEditorWindowFinal from "../components/CodeEditorFinal";
+import {  Button } from 'react-bootstrap'
+
+import ModalPopup from "../components/ModalPopup";
+
 import { Fullscreen } from 'react-bootstrap-icons';
 import { languageOptions } from "../constants/languageOptions";
 const Main = () => {
@@ -91,12 +95,49 @@ const Main = () => {
     }
 
     //code editor information
-    const javascriptDefault = `// Function to calculate the factorial
-    function add(a, b) {
-      let result = a + b;
-      console.log("result",result)
-    }
-    add(9, 9)
+    const javascriptDefault = `
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { frameworkURL, getToken } from "./apiInterface/utils/Common.js"
+import Layout from "./pages/shared/Layout";
+import Dashboard20Box from "./pages/dashboard/Dashboard20Box";
+function Root() {
+    const navigate = useNavigate();
+    const [mappingId, setMappingId] = useState();
+
+    useEffect(() => {
+        debugger;
+        const token = getToken();
+        if (!token) {
+            //url to framework login page
+            window.location.href = frameworkURL;
+        }
+        else { console.log(token) }
+    }, []);
+
+    return (
+        <div>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Dashboard20Box />} />
+                </Route>
+            </Routes>
+        </div>
+    );
+}
+
+function App() {
+    return (
+        <BrowserRouter>
+            <Root />
+        </BrowserRouter>
+    );
+}
+
+
+export default App;
+
     `;
     const [code, setCode] = useState(javascriptDefault);
     const editorRef = useRef(null);
@@ -269,6 +310,18 @@ const Main = () => {
     
         setIsFullscreen(false);
       };
+      const [isModalOpen, setIsModalOpen] = useState(false);
+
+     
+  const [show, setShow] = useState(false);
+    
+      const handleClose = () => setShow(false);
+      const handleShow = () => setShow(true);
+      const handleSaveCode=()=>{
+        setIsModalOpen(true);
+        setShow(true);
+        return true;
+      }
     return (<>
 
         <div class="row row_custom mt-1">
@@ -327,9 +380,16 @@ const Main = () => {
                     setCustomInput={setCustomInput}
                     isFullscreen={isFullscreen}
                     toggleFullscreen={toggleFullscreen}
+                    handleSaveCode={handleSaveCode}
                 ></OutputComponent>
             </div>
         </div>
+        {/* <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button> */}
+      <ModalPopup handleClose={handleClose} handleShow={handleShow} show={show}></ModalPopup>
+
+    
     </>
     )
 }

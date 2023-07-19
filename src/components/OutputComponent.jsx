@@ -19,6 +19,9 @@ const OutputComponent = (props) => {
           <button className="btn btn-primary btn-sm m-2"  onClick={handleCompile}>
             {props.processing ? "Processing..." : "Compile and Execute"}
           </button>
+          <button className="btn btn-primary btn-sm m-2" onClick={props.handleSaveCode}>
+        upload code
+      </button>
         </div>
         {/* <div className=""><button className="btn btn-secondary"><Fullscreen size={30}></Fullscreen></button></div> */}
         <OutputWindowFinal outputDetails={props.outputDetails} />
