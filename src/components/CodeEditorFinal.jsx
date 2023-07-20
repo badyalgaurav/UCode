@@ -10,7 +10,28 @@ const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount 
     setValue(value);
     onChange("code", value);
   };
-
+  //referenced https://blog.logrocket.com/build-web-editor-with-react-monaco-editor/
+  const options = {
+    autoIndent: 'full',
+    contextmenu: false,
+    fontFamily: 'monospace',
+    fontSize: 13,
+    lineHeight: 24,
+    hideCursorInOverviewRuler: true,
+    matchBrackets: 'always',
+    minimap: {
+      enabled: true,
+    },
+    scrollbar: {
+      horizontalSliderSize: 4,
+      verticalSliderSize: 0,
+    },
+    selectOnLineNumbers: true,
+    roundedSelection: false,
+    readOnly: false,
+    cursorStyle: 'line',
+    automaticLayout: true,
+  }; 
   return (
     <div className="row">
       <Editor
@@ -22,7 +43,7 @@ const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount 
         defaultValue="// some comment"
         onChange={handleEditorChange}
        onMount={handleEditorDidMount}
-       
+       options={options}
       />
     </div>
   );
