@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef,createContext } from "react";
 import axios from "axios";
 import VideoPlayerFinal from "../components/VideoPlayerFinal";
 import OutputComponent from "../components/OutputComponent";
@@ -10,6 +10,8 @@ import ModalPopup from "../components/ModalPopup";
 
 import { Fullscreen } from 'react-bootstrap-icons';
 import { languageOptions } from "../constants/languageOptions";
+// Create a context object directly within the page
+import { MainContextProvider} from "./mainContextProvider";
 const Main = () => {
     const playerRef = useRef(null);
     const [progress, setProgress] = useState(0);
@@ -322,8 +324,10 @@ export default App;
         setShow(true);
         return true;
       }
+      const test="tesdfdst";
+      const test1="test";
     return (<>
-
+<MainContextProvider.Provider value={{ test:test,test1:test1}}>
         <div class="row row_custom mt-1">
             <div class="col-md-10" id="fullscreenDiv">
                 <div class="nav-scroller bg-dark shadow-sm mb-0 ">
@@ -389,7 +393,7 @@ export default App;
       </Button> */}
       <ModalPopup handleClose={handleClose} handleShow={handleShow} show={show}></ModalPopup>
 
-    
+      </MainContextProvider.Provider>
     </>
     )
 }
