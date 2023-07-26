@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLogout=()=>{
+    localStorage.clear();
+    navigate('/login');
+  }
+
   return (
     <>
  <header>
@@ -24,8 +32,8 @@ const Header = () => {
           </li>
         </ul>
         <div class="row d-flex  align-items-center">
-          <div className="col"> <label class="text-info">UserName!</label></div>
-          <div className="col"><button class="btn btn-outline-success" type="submit">Logout</button></div>
+          <div className="col"> <label class="text-info">{localStorage.getItem("userName")}!</label></div>
+          <div className="col"><button class="btn btn-outline-success" onClick={handleLogout}>Logout</button></div>
         </div>
       </div>
     </div>

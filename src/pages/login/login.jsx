@@ -4,6 +4,8 @@ import '../login/signin.css'
 const Login=()=>{
   const navigate = useNavigate();
   const handleButtonClick = () => {
+    localStorage.setItem("userName","garry");
+    localStorage.setItem("userId","1");
     navigate('/main');
   };
     return(<>

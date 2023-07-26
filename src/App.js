@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route,useNavigate } from "react-router-dom";
 
 import "./App.css";
 
@@ -11,6 +11,17 @@ import TaskUploaderForm from "./pages/TaskManagement/taskUploaderForm";
 import Layout from './pages/_layout';
 
 function Root() {
+  const navigate = useNavigate();
+  //const [changeState, setChangeState] = useState();
+
+  useEffect(() => {
+              if(!localStorage.getItem("userId")){
+              navigate('/login', { replace: true });
+            }
+         
+  }, []);
+
+
   return (
     <div>
       <Routes>
