@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef,createContext } from "react";
 import axios from "axios";
+
 import VideoPlayerFinal from "../components/VideoPlayerFinal";
 import OutputComponent from "../components/OutputComponent";
 import ExternalVideoPlayerController from "../components/ExternalVideoPlayerController";
@@ -12,7 +13,14 @@ import { Fullscreen } from 'react-bootstrap-icons';
 import { languageOptions } from "../constants/languageOptions";
 // Create a context object directly within the page
 import { MainContextProvider} from "./mainContextProvider";
+
+import { useLocation } from 'react-router-dom';
 const Main = () => {
+    debugger;
+    const {state} = useLocation();
+    // const { id, color } = state; // Read values passed on state
+
+
     const playerRef = useRef(null);
     const [progress, setProgress] = useState(0);
     const [flags, setFlags] = useState([]);

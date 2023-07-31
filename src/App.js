@@ -8,6 +8,8 @@ import VideoPlayer1 from "./components/VideoPlayer1";
 import Main from "./pages/main";
 import Login from "./pages/login/login";
 import TaskUploaderForm from "./pages/TaskManagement/taskUploaderForm";
+import FacultyTasksList from "./pages/TaskManagement/FacultyTasksList";
+import StudentTasksList from "./pages/TaskManagement/StudentTasksList";
 import Layout from './pages/_layout';
 
 function Root() {
@@ -30,6 +32,8 @@ function Root() {
       <Route path="/" element={<Layout/>}>
         <Route path="/main" element={<Main/>} />
         <Route path="/TaskUploaderForm" element={<TaskUploaderForm/>} />
+        <Route path="/FacultyTasksList" element={<FacultyTasksList/>} />
+        <Route path="/StudentTasksList" element={<StudentTasksList/>} />
         </Route>
       </Routes>
     </div>);
