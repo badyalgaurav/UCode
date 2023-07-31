@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-import { pythonapi } from "../../components/common"
+import pythonapi from "../../components/common"
 import '../login/signin.css'
 
 import axios from "axios";
@@ -12,7 +12,7 @@ const Login = () => {
 
     const userName = document.getElementById("txtEmail").value;
     const password = document.getElementById("txtPassword").value;
-    const response = await axios.get(`http://127.0.0.1:8000/user_content_management/login`, {
+    const response = await axios.get(`${pythonapi}user_content_management/login`, {
       params: {
         // Pass the parameters as an object
         username: userName,
