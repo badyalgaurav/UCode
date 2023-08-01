@@ -11,6 +11,8 @@ import ModalPopup from "../components/ModalPopup";
 
 import { Fullscreen } from 'react-bootstrap-icons';
 import { languageOptions } from "../constants/languageOptions";
+import pythonapi from "../components/common"
+
 // Create a context object directly within the page
 import { MainContextProvider} from "./mainContextProvider";
 
@@ -18,7 +20,7 @@ import { useLocation } from 'react-router-dom';
 const Main = () => {
     debugger;
     const {state} = useLocation();
-    // const { id, color } = state; // Read values passed on state
+    const { id, color } = state; // Read values passed on state
 
 
     const playerRef = useRef(null);
@@ -325,9 +327,31 @@ export default App;
      
   const [show, setShow] = useState(false);
     
-      const handleClose = () => setShow(false);
+      const handleClose = () => {
+        var params={
+            "userId": localStorage.getItem("userId"),
+            "classId": "64c5fb4a88c19851d273b82c",
+            "textFilePath": "test",
+            "text": code
+          }
+        axios.post(`${pythonapi}user_content_management/insert_task_info`, params)
+        .then((response) => {
+          // Handle success
+          alert("succesfully saved");
+          setShow(false);
+          console.log('POST request successful', response);
+        })
+        .catch((error) => {
+          // Handle error
+          console.error('Error making POST request', error);
+        });
+        
+  
+    }
       const handleShow = () => setShow(true);
       const handleSaveCode=()=>{
+        debugger;
+        const Content=code;
         setIsModalOpen(true);
         setShow(true);
         return true;

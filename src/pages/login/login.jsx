@@ -10,33 +10,42 @@ const Login = () => {
   const handleButtonClick = async () => {
     debugger;
 
-    const userName = document.getElementById("txtEmail").value;
+    const email = document.getElementById("txtEmail").value;
     const password = document.getElementById("txtPassword").value;
-    const response = await axios.get(`${pythonapi}user_content_management/login`, {
-      params: {
-        // Pass the parameters as an object
-        username: userName,
-        password: password,
-      },
-    });
-    debugger;
+    try{
+      const response = await axios.get(`${pythonapi}user_content_management/login`, {
+        params: {
+          // Pass the parameters as an object
+          email: email,
+          password: password,
+        },
+      });
+      debugger;
     if(response.status ==200){
-      localStorage.setItem("userName", response.data.data[0].userName);
-      localStorage.setItem("userId",   response.data.data[0]._id);
+      localStorage.setItem("userName", response.data.data.userName);
+      localStorage.setItem("userId",   response.data.data._id);
       
-      if(response.data.data[0].accuntId=="S"){
-      localStorage.setItem("classId",   response.data.data[0].classId);
+      if(response.data.data.accountId=="S"){
+      localStorage.setItem("classId",   response.data.data.classId);
+      navigate('/StudentTasksList');
       }
-      navigate('/main');
+      else{
+        navigate('/FacultyTasksList');
+      }
     }
     else{
       alert("email or password doesn't exist")
     }
+    }
+    catch(error){
+      console.log(error);
+    }
+    
   
   };
   return (<>
     <div class="text-center center-screen">
-      <main class="form-signin">
+      <div class="form-signin">
         <form>
           <img class="mb-4" src="./logo.png" alt="" width="90" height="80"></img>
           <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
@@ -49,10 +58,10 @@ const Login = () => {
             <input type="password" class="form-control" id="txtPassword" placeholder="Password"></input>
             <label className="sign-in-label">Password</label>
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit" onClick={handleButtonClick}>Sign in</button>
+          <button class="w-100 btn btn-lg btn-primary" type="button" onClick={handleButtonClick}>Sign in</button>
           <p class="mt-5 mb-3 text-muted">&copy; 2023</p>
         </form>
-      </main>
+      </div>
     </div>
   </>)
 }
