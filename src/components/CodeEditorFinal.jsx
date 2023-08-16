@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 //reference for editor
 // https://www.npmjs.com/package/@monaco-editor/react
+//referenced https://blog.logrocket.com/build-web-editor-with-react-monaco-editor/
 import Editor from "@monaco-editor/react";
 
-const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount }) => {
-  const [value, setValue] = useState(code || "");
+const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount,height,valueEditor,setValueEditor }) => {
+  // const [value, setValue] = useState(code || "");
 
   const handleEditorChange = (value) => {
-    setValue(value);
+    setValueEditor(value);
     onChange("code", value);
   };
-  //referenced https://blog.logrocket.com/build-web-editor-with-react-monaco-editor/
+  
+
+
   const options = {
     autoIndent: 'full',
     contextmenu: false,
@@ -35,10 +38,10 @@ const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount 
   return (
     <div className="row">
       <Editor
-        height="88vh"
+        height={height}
         width={`100%`}
         language={language || "javascript"}
-        value={value}
+        value={valueEditor}
         theme={theme || "vs-dark"}
         defaultValue="// some comment"
         onChange={handleEditorChange}
@@ -49,4 +52,3 @@ const CodeEditorFinal = ({ onChange, language, code, theme,handleEditorDidMount 
   );
 };
 export default CodeEditorFinal;
-

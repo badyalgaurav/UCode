@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, createContext } from "react";
 import axios from "axios";
 
 import VideoPlayerFinal from "../components/VideoPlayerFinal";
-import OutputComponent from "../components/OutputComponent";
+import OutputComponentEditorOnly from "../components/OutputComponentEditorOnly";
 import ExternalVideoPlayerController from "../components/ExternalVideoPlayerController";
 import CodeEditorWindowFinal from "../components/CodeEditorFinal";
 import { Button } from 'react-bootstrap'
@@ -16,13 +16,8 @@ import pythonapi from "../components/common"
 // Create a context object directly within the page
 import { MainContextProvider } from "./mainContextProvider";
 
-import { useLocation } from 'react-router-dom';
-const Main = () => {
-    
-    const { state } = useLocation();
-    const { contentId } = state; // Read values passed on state
 
-
+const EditorOnly = () => {
     const playerRef = useRef(null);
     const [progress, setProgress] = useState(0);
     const [flags, setFlags] = useState([]);
@@ -33,8 +28,6 @@ const Main = () => {
     const [customInput, setCustomInput] = useState("");
     const [outputDetails, setOutputDetails] = useState(null);
     const [processing, setProcessing] = useState(null);
-    const [videoPath, setVideoPath] = useState(null);
-    
     const handleDuration = (duration) => {
         setVideoDuration(duration);
     };
@@ -110,34 +103,8 @@ const Main = () => {
 
     //code editor information
     const [code, setCode] = useState("");
-  const [valueEditor, setValueEditor] = useState(code || "");
+    const [valueEditor, setValueEditor] = useState(code || "");
 
-    const getInfo=()=>{
-        
-        axios.get(`${pythonapi}user_content_management/content_by_id`, {
-            params: {
-              // Pass the parameters as an object
-              content_id:contentId
-            }})
-            .then(response => {
-                debugger;
-              setCode(response.data.data.text);
-              setValueEditor(response.data.data.text);
-              if (response.data.data.videoPath){
-              setVideoPath(`${pythonapi}user_content_management/video?video_path=${response.data.data.videoPath}`)
-            }
-              // Update the component's state with the fetched data
-            //   setData(response.data.data);
-            //   setLoading(false);
-            })
-            .catch(error => {
-              console.error('Error fetching data:', error);
-            //   setLoading(false);
-            });
-    }
-    useEffect(() => {
-        getInfo();},[])
-   
     const editorRef = useRef(null);
     const onChange = (action, data) => {
         switch (action) {
@@ -211,7 +178,7 @@ const Main = () => {
         axios
             .request(options)
             .then(function (response) {
-                
+                debugger;
                 console.log("res.data", response.data);
                 const token = response.data.token;
                 checkStatus(token);
@@ -235,7 +202,7 @@ const Main = () => {
     };
 
     const handleFullScreen = () => {
-        
+        debugger;
         // const visibleCompoent=!props.isPlayingState?"codeEditor":"videoPlayer";
         // if (isPlayingState) {
         var elem = document.getElementById("codeEditor");
@@ -254,25 +221,6 @@ const Main = () => {
         }
         // }
     }
-    function resizeEditor() {
-        const editorHeight = window.innerHeight - 100;// document.querySelector('header').offsetHeight;
-        document.getElementById('codeEditor').style.height = `${editorHeight}px`;
-        document.getElementById('videoPlayer').style.height = `${editorHeight}px`;
-    }
-    
-    useEffect(() => {
-       
-        resizeEditor();
-        window.addEventListener('resize', resizeEditor);
-
-        return () => {
-            window.removeEventListener('resize', resizeEditor);
-        };
-
-
-    }, []);
-
-
     const [isFullscreen, setIsFullscreen] = useState(false);
 
     const toggleFullscreen = () => {
@@ -318,9 +266,19 @@ const Main = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => {
+        setShow(false);
         
+
+
+
+
+    }
+
+    const handleSave=()=>{
+        debugger;
         const fileInput = document.getElementById('videoFileInput');
         const programName = document.getElementById('taskName').value;
+        const description = document.getElementById('description').value;
         const classId = document.getElementById('selectClass').value;
         const file = fileInput.files[0];
         var params = {
@@ -335,19 +293,20 @@ const Main = () => {
         // formData.append('textFilePath', 'some_path');
         // formData.append('text', 'Some text content');
         // formData.append('video', file);
-        
+        debugger;
         axios.post(`${pythonapi}user_content_management/insert_video`, params, {
             headers: {
               'Content-Type': 'multipart/form-data', // Set the correct content type for file upload
             }}).then((response) => {
             // Handle success
-            
+            debugger;
             var params = {
                 "userId": sessionStorage.getItem("userId"),
                 "classId":classId,
                 "videoPath": response.data.video_path,
                 "text": code,
-                "taskName":programName
+                "taskName":programName,
+                "description":description
             }
             axios.post(`${pythonapi}user_content_management/insert_task_info`, params)
                 // , {
@@ -358,7 +317,7 @@ const Main = () => {
                 .then((response) => {
                     // Handle success
                     alert("succesfully saved");
-                    setShow(false);
+                    
                     console.log('POST request successful', response);
                 })
                 .catch((error) => {
@@ -370,42 +329,14 @@ const Main = () => {
                 // Handle error
                 console.error('Error making POST request', error);
             });
-
-
-
-
     }
     const handleShow = () => setShow(true);
     const handleSaveCode = () => {
-
-      
-            
-            var params = {
-                "userId": sessionStorage.getItem("userId"),
-                "classId":sessionStorage.getItem("classId"),
-                "text": code,
-                "contentId": contentId,
-               
-            }
-            axios.post(`${pythonapi}user_content_management/submit_assignment`, params)
-                // , {
-                //     headers: {
-                //       'Content-Type': 'multipart/form-data', // Set the correct content type for file upload
-                //     },
-                //   })
-                .then((response) => {
-                    // Handle success
-                    alert("succesfully saved");
-                    setShow(false);
-                    console.log('POST request successful', response);
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error('Error making POST request', error);
-                });
-   
-
-       
+        debugger;
+        const Content = code;
+        setIsModalOpen(true);
+        setShow(true);
+        return true;
     }
     const test = "tesdfdst";
     const test1 = "test";
@@ -425,45 +356,20 @@ const Main = () => {
 
                     </div>
 
-                    <div id="codeEditor" className="code-editor d-none">
+                    <div id="codeEditor" className="code-editor">
                         <CodeEditorWindowFinal code={code}
-                        valueEditor={valueEditor}
-                        setValueEditor={setValueEditor}
-                            height="88vh"
+                          valueEditor={valueEditor}
+                          setValueEditor={setValueEditor}
+                            height="95vh"
                             onChange={onChange}
                             language={undefined}
                             theme={undefined}
                             handleEditorDidMount={handleEditorDidMount}></CodeEditorWindowFinal>
                     </div>
-                    <div id="videoPlayer" className="video-player">
-                        <VideoPlayerFinal
-                            playerRef={playerRef}
-                            handleProgress={handleProgress}
-                            handleProgressChange={handleProgressChange}
-                            handleDuration={handleDuration}
-                            playVideo={playVideo}
-                            pauseVideo={pauseVideo}
-                            handleVideoReady={handleVideoReady}
-                            handleSetVideoDuration={handleSetVideoDuration}
-                            videoPath={videoPath}
-                        ></VideoPlayerFinal>
-                    </div>
-
-                    <div className="external-video-player-controller">
-                        <ExternalVideoPlayerController
-                            handleToggle={handleToggle}
-                            isPlaying={isPlaying}
-                            isPlayingState={isPlayingState}
-                            flags={flags}
-                            progress={progress}
-                            videoDuration={videoDuration}
-                            handleTagClickEvent={handleTagClickEvent}
-                            handleProgressChange={handleProgressChange}
-                        ></ExternalVideoPlayerController>
-                    </div>
+                   
                 </div>
                 <div class="col-md-2">
-                    <OutputComponent handleCompile={handleCompile}
+                    <OutputComponentEditorOnly handleCompile={handleCompile}
                         processing={processing}
                         outputDetails={outputDetails}
                         customInput={customInput}
@@ -471,17 +377,17 @@ const Main = () => {
                         isFullscreen={isFullscreen}
                         toggleFullscreen={toggleFullscreen}
                         handleSaveCode={handleSaveCode}
-                    ></OutputComponent>
+                    ></OutputComponentEditorOnly>
                 </div>
             </div>
             {/* <Button variant="primary" onClick={handleShow}>
         Launch demo modal
       </Button> */}
-            <ModalPopup handleClose={handleClose} handleShow={handleShow} show={show}></ModalPopup>
+            <ModalPopup handleClose={handleClose} handleSave={handleSave} handleShow={handleShow} show={show}></ModalPopup>
 
         </MainContextProvider.Provider>
     </>
     )
 }
 
-export default Main;
+export default EditorOnly;

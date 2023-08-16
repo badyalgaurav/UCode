@@ -6,6 +6,7 @@ import "./App.css";
 // import VideoPlayer from "./components/VideoPlayerWindow";
 import VideoPlayer1 from "./components/VideoPlayer1";
 import Main from "./pages/main";
+import EditorOnly from "./pages/editorOnly";
 import Login from "./pages/login/login";
 import TaskUploaderForm from "./pages/TaskManagement/taskUploaderForm";
 import FacultyTasksList from "./pages/TaskManagement/FacultyTasksList";
@@ -17,7 +18,7 @@ function Root() {
   //const [changeState, setChangeState] = useState();
 
   useEffect(() => {
-              if(!localStorage.getItem("userId")){
+              if(!sessionStorage.getItem("userId")){
               navigate('/login', { replace: true });
             }
          
@@ -34,6 +35,7 @@ function Root() {
         <Route path="/TaskUploaderForm" element={<TaskUploaderForm/>} />
         <Route path="/FacultyTasksList" element={<FacultyTasksList/>} />
         <Route path="/StudentTasksList" element={<StudentTasksList/>} />
+        <Route path="/EditorOnly" element={<EditorOnly/>} />
         </Route>
       </Routes>
     </div>);

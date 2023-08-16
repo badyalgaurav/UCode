@@ -40,7 +40,8 @@ const OutputWindowFinal = ({ outputDetails }) => {
   
   return (
     <>
-      <h4 className="font-bold"> Output {contextData.test}</h4>
+     {/* {contextData.test} */}
+      <h4 className="font-bold"> Output</h4>
       <div className="output-response">
         {outputDetails ? <>{getOutput()}</> : null}
       </div>

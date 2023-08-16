@@ -22,11 +22,12 @@ const Login = () => {
       });
       debugger;
     if(response.status ==200){
-      localStorage.setItem("userName", response.data.data.userName);
-      localStorage.setItem("userId",   response.data.data._id);
+      sessionStorage.setItem("userName", response.data.data.userName);
+      sessionStorage.setItem("userId",   response.data.data._id);
+      sessionStorage.setItem("accountId",   response.data.data.accountId);
       
       if(response.data.data.accountId=="S"){
-      localStorage.setItem("classId",   response.data.data.classId);
+        sessionStorage.setItem("classId",   response.data.data.classId);
       navigate('/StudentTasksList');
       }
       else{

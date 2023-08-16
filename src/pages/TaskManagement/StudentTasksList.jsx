@@ -14,13 +14,13 @@ const StudentTasksList = () => {
 
   const fetchData = () => {
     debugger;
-    const classId=localStorage.getItem("classId");
-    const userId=localStorage.getItem("userId");
+    const classId=sessionStorage.getItem("classId");
+    const userId=sessionStorage.getItem("userId");
     // Replace 'YOUR_API_ENDPOINT' with the actual API endpoint from where you want to fetch the data
-    axios.get(`${pythonapi}user_content_management/contents_list`, {
+    axios.get(`${pythonapi}user_content_management/contents_list_by_class_id`, {
       params: {
         // Pass the parameters as an object
-        user_id: userId,
+       
         class_id: classId,
       }})
       .then(response => {
@@ -35,12 +35,11 @@ const StudentTasksList = () => {
       });
   };
 
-  const handleTaskClick = () => {
+  const handleTaskClick = (id) => {
     const params = {
-      itemId: 86,
-      otherParam: 'anything you want here',
+      contentId: id
     };
-    navigate('/main', { state: { id: 7, color: 'green' } });
+    navigate('/main', { state: params});
     console.log('Navigating to Main with params:', params);
   }
 
@@ -50,13 +49,24 @@ const StudentTasksList = () => {
 
   return (
     <div>
-      <h1>List of Data:</h1>
-      <ul>
+   
+      <div className="row">
         {data.map(item => (
-          <li key={item.id} onClick={handleTaskClick}>{item.text}</li>
-          // Replace 'name' with the key you want to display from your data object
+        <div key={item._id} className="col col-md-3 mb-4">
+        <div className="card text-black h-100">
+          <div className="card-body"><b>{item.taskName}</b>
+          <br></br>
+          <span>Description: </span><p>{item.description}</p>
+          </div>
+          <div className="card-footer">
+          <button className="btn btn-primary" onClick={()=>{handleTaskClick(item._id)}}>play</button>
+
+            </div>
+          
+        </div>
+      </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

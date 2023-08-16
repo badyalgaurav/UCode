@@ -32,7 +32,8 @@ const VideoPalayerFinal = (props) => {
       <ReactPlayer 
         // ref={(ref) => setPlayerRef(ref)}
         ref={playerRef}
-        url="/videos/testVideo.mp4"
+        config={{ file: { forceVideo: true } }}
+        url={props.videoPath?props.videoPath:"http://127.0.0.1:8000/user_content_management/video?video_path=/var/www/1.mp4"}
         onReady={handleVideoReady}
         onDuration={handleDuration}
         onProgress={handleProgress}
@@ -43,7 +44,9 @@ const VideoPalayerFinal = (props) => {
         height="88vh"
         onPlay={playVideo}
         onPause={pauseVideo}
+        preload
       />
+      
     </div>
 
   </>)
