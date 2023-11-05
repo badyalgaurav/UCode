@@ -51,6 +51,27 @@ const StudentTasksList = () => {
     <div>
    
       <div className="row">
+      <div><h1>New Assignments</h1></div>
+
+        {data.map(item => (
+        <div key={item._id} className="col col-md-3 mb-4">
+        <div className="card text-black h-100">
+          <div className="card-body"><b>{item.taskName}</b>
+          <br></br>
+          <span>Description: </span><p>{item.description}</p>
+          </div>
+          <div className="card-footer">
+          <button className="btn btn-primary" onClick={()=>{handleTaskClick(item._id)}}>play</button>
+
+            </div>
+          
+        </div>
+      </div>
+        ))}
+      </div>
+
+      <div className="row">
+        <div><h1>checked results</h1></div>
         {data.map(item => (
         <div key={item._id} className="col col-md-3 mb-4">
         <div className="card text-black h-100">

@@ -1,12 +1,10 @@
-import React,{useContext } from "react";
+import React, { useContext } from "react";
 import { MainContextProvider } from "../pages/mainContextProvider";
 const OutputWindowFinal = ({ outputDetails }) => {
-  debugger
   // Use the useContext hook to access the context data from the parent page
   const contextData = useContext(MainContextProvider);
   const getOutput = () => {
     let statusId = outputDetails?.status?.id;
-
     if (statusId === 6) {
       // compilation error
       return (
@@ -36,11 +34,11 @@ const OutputWindowFinal = ({ outputDetails }) => {
       );
     }
   };
-  
-  
+
+
   return (
     <>
-     {/* {contextData.test} */}
+      {/* {contextData.test} */}
       <h4 className="font-bold"> Output</h4>
       <div className="output-response">
         {outputDetails ? <>{getOutput()}</> : null}
